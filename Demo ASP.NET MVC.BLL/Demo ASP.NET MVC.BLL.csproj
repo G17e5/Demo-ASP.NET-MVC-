@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Demo_ASP.NET_MVC.BLL</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Demo ASP.NET MVC.DAL\Demo ASP.NET MVC.DAL.csproj" />
+  </ItemGroup>
+
+</Project>
