@@ -36,21 +36,30 @@
         <label class="col-form-label" asp-for="HireDate"></label>
         <input asp-for="HireDate" class="form-control" />
     </div>
-    <div class="form-group bg-secondary d-flex justify-content-center algin-item-center">
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Gender"></label>
+        <input asp-for="Gender" class="form-control" />
+    </div>
+    <div class="form-group">
         <input asp-for="Isactive" class="form-check-box" />
         <label class="col-form-label" asp-for="Isactive"></label>
     </div>
-    <div class="form-group">
-        <p>Please select your Gender :</p>
-        <input type="radio" asp-for="Gender" value="Gender">
-        <label asp-for="Gender">Male</label><br>
-
-        <input type="radio" asp-for="Gender" value="Gender">
-        <label asp-for="Gender">Female</label><br>
-    </div>
+    
+  
+        
+        
+    
 
 
     <input type="submit" value="Create" class="btn btn-primary" />
     <a asp-action="Index" class="btn btn-light">Back To List</a>
 </form>
 
+
+@section ValidationScriptSection
+{
+
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>    
+}

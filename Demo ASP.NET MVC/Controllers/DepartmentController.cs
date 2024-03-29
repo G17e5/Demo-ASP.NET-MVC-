@@ -70,6 +70,7 @@ namespace Demo_ASP.NET_MVC.Controllers
         //Department//Edit/10
         //Department//Edit
         [HttpGet]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(int? id)
         {
             return Details(id, "Edit");
