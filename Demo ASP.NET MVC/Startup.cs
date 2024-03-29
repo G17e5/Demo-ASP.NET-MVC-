@@ -1,3 +1,5 @@
+using Demo_ASP.NET_MVC.BLL.Interfaces;
+using Demo_ASP.NET_MVC.BLL.Repositories;
 using Demo_ASP.NET_MVC.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,7 +36,8 @@ namespace Demo_ASP.NET_MVC
             });
 
 
-
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
