@@ -9,15 +9,16 @@ using System.Threading.Tasks;
 
 namespace Demo_ASP.NET_MVC.DAL
 {
-    internal class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-       /* public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+       public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 
-        }*/
+        }
+        
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-       => optionsBuilder.UseSqlServer("Server = . ; Database = DB_Application_MVC ;Trusted_Connection = True");
+       /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+       => optionsBuilder.UseSqlServer("Server = . ; Database = DB_Application_MVC ;Trusted_Connection = True");*/
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
