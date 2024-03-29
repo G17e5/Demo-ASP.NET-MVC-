@@ -1,0 +1,56 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Create Employee";
+}
+
+<h1>Create New Employee</h1>
+
+<br />
+<br />
+
+<form asp-action="Create">
+
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Age"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Salary"></label>
+        <input asp-for="Salary" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="HireDate"></label>
+        <input asp-for="HireDate" class="form-control" />
+    </div>
+    <div class="form-group bg-secondary d-flex justify-content-center algin-item-center">
+        <input asp-for="Isactive" class="form-check-box" />
+        <label class="col-form-label" asp-for="Isactive"></label>
+    </div>
+    <div class="form-group">
+        <p>Please select your Gender :</p>
+        <input type="radio" asp-for="Gender" value="Gender">
+        <label asp-for="Gender">Male</label><br>
+
+        <input type="radio" asp-for="Gender" value="Gender">
+        <label asp-for="Gender">Female</label><br>
+    </div>
+
+
+    <input type="submit" value="Create" class="btn btn-primary" />
+    <a asp-action="Index" class="btn btn-light">Back To List</a>
+</form>
+
