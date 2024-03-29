@@ -9,9 +9,4 @@
     <ProjectReference Include="..\Demo ASP.NET MVC.DAL\Demo ASP.NET MVC.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>
