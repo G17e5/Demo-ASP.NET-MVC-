@@ -19,6 +19,7 @@ namespace Demo_ASP.NET_MVC.Controllers
             }
             public IActionResult Index()
             {
+              TempData.Keep();
 
                /*binding views dictionary [one way]
             //1.View Data
@@ -43,9 +44,15 @@ namespace Demo_ASP.NET_MVC.Controllers
                 if (ModelState.IsValid)
                 {
                     var count = _employeeRepo.Add(employee);
-                    if (count > 0)
-                        return RedirectToAction(nameof(Index));
 
+                //3.TempData
+                    if (count > 0)
+                        TempData["Message"] = "Department is Created";
+
+                    else
+                        TempData["Message"] = "AN Erorr not Created";    
+
+                    return RedirectToAction(nameof(Index));
                 }
                 return View(employee);
 

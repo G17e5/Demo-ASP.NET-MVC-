@@ -6,16 +6,21 @@
 
 
 
-@{
-    ViewData["Titel"] = "Index ";
-    string viewDataMessage = ViewBag["Message"] as string; @*strongly typed*@
+@*
+   // ViewData["Titel"] = "Index ";
+   // string viewDataMessage = ViewBag["Message"] as string; @*strongly typed
 
-    string viewBagMessage = ViewBag["Message"]; @*weekly typed*@
+   // string viewBagMessage = ViewBag["Message"]; weekly typed
 
+*@
 
+@if (!string.IsNullOrEmpty(TempData["Message"] as string))
+{
+    <div class="alert alert-warning ">
+        @TempData["Message"]
+    </div>
 }
 
-  @*div class="alert alert-warning "> @ViewBag.Message  </div>*@<
 
 
 
