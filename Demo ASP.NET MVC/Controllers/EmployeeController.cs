@@ -30,7 +30,7 @@ namespace Demo_ASP.NET_MVC.Controllers
 
 
                 var employees = _employeeRepo.GetAll();
-                return View(employees);
+                return View(employees); 
             }
 
             public IActionResult Create()

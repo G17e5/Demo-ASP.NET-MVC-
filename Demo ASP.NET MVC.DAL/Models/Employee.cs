@@ -46,5 +46,9 @@ namespace Demo_ASP.NET_MVC.DAL.Models
         public Gender Gender { get; set; }
         public EmpType EmployeType { get; set; }
 
+        public int? DepartmentId { get; set; }// forgin key column
+        //Navgtion propperty ==> one
+        public Department Department { get; set; }
+
     }
 }
