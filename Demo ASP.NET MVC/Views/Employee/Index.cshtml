@@ -32,6 +32,20 @@
 <br />
 
 
+<div class="row offset-2 justify-content-center align-content-center mt-5">
+    <form class="row col-8"  asp-action="Index" >
+        <div class="col-8">
+            <input type="text" class="form-control" name="searchInput" placeholder="Search by name" />
+        </div>
+        <div class="col-4">
+            <input type="submit"value="Search" name="searchInput" class="btn btn-success" placeholder="search by name" />
+        </div>
+
+
+    </form>
+
+</div>
+
 @if (Model.Count() > 0)
 {
 

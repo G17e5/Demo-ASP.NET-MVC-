@@ -10,5 +10,7 @@ namespace Demo_ASP.NET_MVC.BLL.Interfaces
     public interface IEmployeeRepository : IGenericsRepository<Employee>
     {
         IQueryable<Employee> GetEmployees(string address);
+        IQueryable<Employee> SearcByhName(string name);
+
     }
 }

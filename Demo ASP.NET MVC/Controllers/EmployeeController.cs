@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Linq;
 
 namespace Demo_ASP.NET_MVC.Controllers
 {
@@ -18,21 +19,32 @@ namespace Demo_ASP.NET_MVC.Controllers
                 _employeeRepo = employeeRepo;
                 _env = env;
                 //_departmentRepo = departmentRepo;
-        }
-            public IActionResult Index()
-            {
-              TempData.Keep();
-
                /*binding views dictionary [one way]
             //1.View Data
            /// ViewData["Message"] = "hii ASP.NET";  // dictionary
             //2.ViewBag
            /// ViewBag.Message ="Hello ASP.NET";     // Dynamic object
             */
+        }
 
 
-                var employees = _employeeRepo.GetAll();
-                return View(employees); 
+
+            public IActionResult Index( string searchInput)
+            {
+                TempData.Keep();
+
+               var employees = Enumerable.Empty<Employee>();
+
+
+               if (string.IsNullOrEmpty(searchInput))
+                    employees = _employeeRepo.GetAll();                  
+               else
+                    employees = _employeeRepo.SearcByhName(searchInput.ToLower());
+
+            
+               return View(employees);
+            
+
             }
 
             public IActionResult Create()

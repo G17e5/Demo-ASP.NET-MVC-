@@ -25,6 +25,10 @@ namespace Demo_ASP.NET_MVC.BLL.Repositories
         {
             return _dbcontext.Employees.Where(e => e.Address.ToLower() == address.ToLower());
         }
+
+        public IQueryable<Employee> SearcByhName(string name)
+        => _dbcontext.Employees.Where(E => E.Name.ToLower().Contains(name));
+         
     }
 
 }
