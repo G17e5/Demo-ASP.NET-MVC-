@@ -2,6 +2,7 @@ using Demo_ASP.NET_MVC.BLL.Interfaces;
 using Demo_ASP.NET_MVC.BLL.Repositories;
 using Demo_ASP.NET_MVC.DAL;
 using Demo_ASP.NET_MVC.Extensions;
+using Demo_ASP.NET_MVC.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -40,6 +41,7 @@ namespace Demo_ASP.NET_MVC
            // ApplictionsServicesExtensions.AddApplictionServices(services); //static method
 
             services.AddApplictionServices(); //extention methods
+            services.AddAutoMapper(M=>M.AddProfile(new MappingProfiles()));
 
         }
 
