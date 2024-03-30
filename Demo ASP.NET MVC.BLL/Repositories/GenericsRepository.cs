@@ -12,28 +12,28 @@ namespace Demo_ASP.NET_MVC.BLL.Repositories
 {
     public class GenericsRepository<T> : IGenericsRepository<T> where T : ModelBase
     {
-        private protected readonly ApplicationDbContext _dbcontext;
+        private protected readonly ApplicationDbContext _dbcontext; //null
         public GenericsRepository(ApplicationDbContext dbContext)
         {
             _dbcontext = dbContext;
         }
 
-        public int Add(T entity)
+        public void Add(T entity)
         {
             _dbcontext.Set<T>().Add(entity);
-            return _dbcontext.SaveChanges();
+           // return _dbcontext.SaveChanges();
         }
 
-        public int Update(T entity)
+        public void Update(T entity)
         {
             _dbcontext.Set<T>().Update(entity);
-            return _dbcontext.SaveChanges();
+           // return _dbcontext.SaveChanges();
         }
 
-        public int Delete(T entity)
+        public void Delete(T entity)
         {
             _dbcontext.Set<T>().Remove(entity);
-            return _dbcontext.SaveChanges();
+            //return _dbcontext.SaveChanges();
         }
 
         public T Get(int id)

@@ -15,16 +15,18 @@ namespace Demo_ASP.NET_MVC.Controllers
 {
    public class EmployeeController : Controller
         {
+        private readonly IUnitOfWork _unitOfwork;
         private readonly IMapper _mapper;
-        private readonly IEmployeeRepository _employeeRepo;
+     //   private readonly IEmployeeRepository _employeeRepo;
             private readonly IWebHostEnvironment _env;
        //   private readonly IDepartmentRepository _departmentRepo;
 
-        public EmployeeController( IMapper mapper, IEmployeeRepository employeeRepo, IWebHostEnvironment env )
+        public EmployeeController(IUnitOfWork UnitOfwork, IMapper mapper, IWebHostEnvironment env )
             {
-            _mapper = mapper;
-            _employeeRepo = employeeRepo;
+                _unitOfwork = UnitOfwork;
+                _mapper = mapper;
                 _env = env;
+               // _employeeRepo = employeeRepo;
                 //_departmentRepo = departmentRepo;
                /*binding views dictionary [one way]
             //1.View Data
@@ -44,9 +46,9 @@ namespace Demo_ASP.NET_MVC.Controllers
 
 
                if (string.IsNullOrEmpty(searchInput))
-                    employees = _employeeRepo.GetAll();                  
+                    employees = _unitOfwork.EmployeeRepository.GetAll();                  
                else
-                    employees = _employeeRepo.SearcByhName(searchInput.ToLower());
+                    employees = _unitOfwork.EmployeeRepository.SearcByhName(searchInput.ToLower());
 
                 var MappedEmp = _mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeViewModel>>(employees);
 
@@ -80,7 +82,9 @@ namespace Demo_ASP.NET_MVC.Controllers
             var MappedEmp = _mapper.Map<EmployeeViewModel, Employee>(employeeVM);
                 if (ModelState.IsValid)
                 {
-                    var count = _employeeRepo.Add(MappedEmp);
+                _unitOfwork.EmployeeRepository.Add(MappedEmp);
+
+                var count = _unitOfwork.Complete();
 
                 //3.TempData
                     if (count > 0)
@@ -105,7 +109,7 @@ namespace Demo_ASP.NET_MVC.Controllers
                 if (!id.HasValue)
                     return BadRequest(); // 400
 
-                var employee = _employeeRepo.Get(id.Value);
+                var employee = _unitOfwork.EmployeeRepository.Get(id.Value);
 
             var MappedEmp = _mapper.Map<Employee, EmployeeViewModel> (employee);
 
@@ -158,7 +162,8 @@ namespace Demo_ASP.NET_MVC.Controllers
                 try
                 {
                    var MappedEmp = _mapper.Map<EmployeeViewModel, Employee>(employeeVN);
-                    _employeeRepo.Update(MappedEmp);
+                _unitOfwork.EmployeeRepository.Update(MappedEmp);
+                _unitOfwork.Complete();
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
@@ -193,7 +198,8 @@ namespace Demo_ASP.NET_MVC.Controllers
             {
                 var MappedEmp = _mapper.Map<EmployeeViewModel, Employee>(employeeVM);
 
-                _employeeRepo.Delete(MappedEmp);
+            _unitOfwork.EmployeeRepository.Delete(MappedEmp);
+            _unitOfwork.Complete();
                     return RedirectToAction(nameof(Index));
             }
 

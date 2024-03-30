@@ -8,10 +8,11 @@ namespace Demo_ASP.NET_MVC.Extensions
     {
         public static void AddApplictionServices(this IServiceCollection services)
         {
-            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            /*services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
-            services.AddScoped<IEmployeeRepository , EmployeeRepository>();
+            services.AddScoped<IEmployeeRepository , EmployeeRepository>();*/
         }
 
     }

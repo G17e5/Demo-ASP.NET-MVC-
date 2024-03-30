@@ -9,18 +9,21 @@ namespace Demo_ASP.NET_MVC.Controllers
 {
     public class DepartmentController : Controller
     {
-        private readonly IDepartmentRepository _departmentsRepo;
+        private readonly IUnitOfWork _uintOfWork;
+
+        //private readonly IDepartmentRepository _departmentsRepo;
 
         private readonly IWebHostEnvironment _env;
 
-        public DepartmentController(IDepartmentRepository departmentsRepo, IWebHostEnvironment env)
+        public DepartmentController( IUnitOfWork UintOfWork, IWebHostEnvironment env)
         {
-            _departmentsRepo = departmentsRepo;
+           _uintOfWork = UintOfWork;
+            //_departmentsRepo = departmentsRepo;
             _env = env;
         }
         public IActionResult Index()
         {
-            var departments = _departmentsRepo.GetAll();
+            var departments = _uintOfWork.DepartmentRepository.GetAll();
             return View(departments);
         }
 
@@ -36,7 +39,8 @@ namespace Demo_ASP.NET_MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var count = _departmentsRepo.Add(department);
+                _uintOfWork.DepartmentRepository.Add(department);
+                var count = _uintOfWork.Complete();
                 if (count > 0)
                     return RedirectToAction(nameof(Index));
 
@@ -56,7 +60,8 @@ namespace Demo_ASP.NET_MVC.Controllers
             if (!id.HasValue)
                 return BadRequest(); // 400
 
-            var department = _departmentsRepo.Get(id.Value);
+            var department = _uintOfWork.DepartmentRepository.Get(id.Value);
+            _uintOfWork.Complete();
 
             if (department is null)
                 return NotFound();
@@ -107,7 +112,8 @@ namespace Demo_ASP.NET_MVC.Controllers
 
             try
             {
-                _departmentsRepo.Update(department);
+                _uintOfWork.DepartmentRepository.Update(department);
+                _uintOfWork.Complete();
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -139,7 +145,8 @@ namespace Demo_ASP.NET_MVC.Controllers
         [HttpPost]
         public IActionResult Delete(Department department)
         {
-            _departmentsRepo.Delete(department);
+            _uintOfWork.DepartmentRepository.Delete(department);
+            _uintOfWork.Complete();
             return RedirectToAction(nameof(Index));
         }
 

@@ -40,7 +40,8 @@ namespace Demo_ASP.NET_MVC
 
            // ApplictionsServicesExtensions.AddApplictionServices(services); //static method
 
-            services.AddApplictionServices(); //extention methods
+            //services.AddApplictionServices(); //extention methods
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper(M=>M.AddProfile(new MappingProfiles()));
 
         }
