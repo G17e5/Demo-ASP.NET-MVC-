@@ -39,7 +39,7 @@ namespace Demo_ASP.NET_MVC.Controllers
             {
                //ViewData["Departments"] = _departmentRepo.GetAll();
                //ViewBag.Departments = _departmentRepo.GetAll();
-            return View();
+               return View();
             }
 
             [HttpPost]

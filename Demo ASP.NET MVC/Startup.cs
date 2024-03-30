@@ -1,6 +1,7 @@
 using Demo_ASP.NET_MVC.BLL.Interfaces;
 using Demo_ASP.NET_MVC.BLL.Repositories;
 using Demo_ASP.NET_MVC.DAL;
+using Demo_ASP.NET_MVC.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,11 +34,13 @@ namespace Demo_ASP.NET_MVC
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
+            },ServiceLifetime.Scoped);
 
 
-            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+           // ApplictionsServicesExtensions.AddApplictionServices(services); //static method
+
+            services.AddApplictionServices(); //extention methods
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
