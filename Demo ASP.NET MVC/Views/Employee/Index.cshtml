@@ -4,6 +4,21 @@
                                     // ViewBag.Title = "Index"; // dynamic Object
 }
 
+
+
+@{
+    ViewData["Titel"] = "Index ";
+    string viewDataMessage = ViewBag["Message"] as string; @*strongly typed*@
+
+    string viewBagMessage = ViewBag["Message"]; @*weekly typed*@
+
+
+}
+
+  @*div class="alert alert-warning "> @ViewBag.Message  </div>*@<
+
+
+
 <h1>All Employees</h1>
 
 <br />

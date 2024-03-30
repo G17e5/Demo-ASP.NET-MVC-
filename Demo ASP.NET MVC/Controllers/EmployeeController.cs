@@ -19,6 +19,15 @@ namespace Demo_ASP.NET_MVC.Controllers
             }
             public IActionResult Index()
             {
+
+               /*binding views dictionary [one way]
+            //1.View Data
+           /// ViewData["Message"] = "hii ASP.NET";  // dictionary
+            //2.ViewBag
+           /// ViewBag.Message ="Hello ASP.NET";     // Dynamic object
+            */
+
+
                 var employees = _employeeRepo.GetAll();
                 return View(employees);
             }
