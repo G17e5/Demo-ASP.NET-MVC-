@@ -11,12 +11,14 @@ namespace Demo_ASP.NET_MVC.Controllers
         {
             private readonly IEmployeeRepository _employeeRepo;
             private readonly IWebHostEnvironment _env;
+       //   private readonly IDepartmentRepository _departmentRepo;
 
-            public EmployeeController(IEmployeeRepository employeeRepo, IWebHostEnvironment env)
+        public EmployeeController(IEmployeeRepository employeeRepo, IWebHostEnvironment env )
             {
                 _employeeRepo = employeeRepo;
                 _env = env;
-            }
+                //_departmentRepo = departmentRepo;
+        }
             public IActionResult Index()
             {
               TempData.Keep();
@@ -35,7 +37,9 @@ namespace Demo_ASP.NET_MVC.Controllers
 
             public IActionResult Create()
             {
-                return View();
+               //ViewData["Departments"] = _departmentRepo.GetAll();
+               //ViewBag.Departments = _departmentRepo.GetAll();
+            return View();
             }
 
             [HttpPost]
@@ -81,7 +85,11 @@ namespace Demo_ASP.NET_MVC.Controllers
             [HttpGet]
             public IActionResult Edit(int? id)
             {
-                return Details(id, "Edit");
+
+
+               //ViewData["Departments"] = _departmentRepo.GetAll();
+
+               return Details(id, "Edit");
 
                 /*if (!id.HasValue)
                     return BadRequest();
