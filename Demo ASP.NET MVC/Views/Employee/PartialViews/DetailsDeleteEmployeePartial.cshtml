@@ -1,11 +1,16 @@
 ﻿@model EmployeeViewModel
 
+<div>
+    <img src="~/Files/Images/@Model.ImageName" class="img-fluid rounded w-75" alt="test photo" />
+</div>
 
 @inject IUnitOfWork _IUnitOfWork
 
 @{
     var departments = new SelectList(_IUnitOfWork.EmployeeRepository.GetAll(), nameof(Department.Id), nameof(Department.Name));
 }
+
+
 
 
 <div class="form-group">
