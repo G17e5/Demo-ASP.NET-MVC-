@@ -123,6 +123,10 @@ namespace Demo_ASP.NET_MVC.Controllers
             if (employee is null)
                     return NotFound();
 
+
+            if(ViewName.Equals("Delete", StringComparison.OrdinalIgnoreCase))
+                 TempData["ImageName"] = employee.ImageName;
+
              
                 return View(ViewName, MappedEmp);
             }
@@ -202,11 +206,19 @@ namespace Demo_ASP.NET_MVC.Controllers
             [HttpPost]
             public IActionResult Delete(EmployeeViewModel employeeVM)
             {
+                 employeeVM.ImageName = TempData["ImageName"] as string;
+
                 var MappedEmp = _mapper.Map<EmployeeViewModel, Employee>(employeeVM);
 
             _unitOfwork.EmployeeRepository.Delete(MappedEmp);
-            _unitOfwork.Complete();
-                    return RedirectToAction(nameof(Index));
+            var count = _unitOfwork.Complete();
+            if (count > 0)
+            {
+                DocumentSettings.DeleteFile(employeeVM.ImageName, "Images");
+
+            }
+               return RedirectToAction(nameof(Index));
+
             }
 
 
