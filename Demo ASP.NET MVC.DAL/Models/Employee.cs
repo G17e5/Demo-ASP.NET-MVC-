@@ -24,6 +24,9 @@ namespace Demo_ASP.NET_MVC.DAL.Models
     }
     public class Employee : ModelBase
     {
+
+        #region Data
+        public int MyProperty { get; set; }
         public string Name { get; set; }
         [Range(22, 30)]
         public int? Age { get; set; }
@@ -45,6 +48,10 @@ namespace Demo_ASP.NET_MVC.DAL.Models
 
         public Gender Gender { get; set; }
         public EmpType EmployeType { get; set; }
+        #endregion
+
+
+        public string ImageName { get; set; }
 
         public int? DepartmentId { get; set; }// forgin key column
         //Navgtion propperty ==> one

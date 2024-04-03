@@ -37,7 +37,6 @@
     <label class="col-form-label" asp-for="HireDate"></label>
     <input asp-for="HireDate" class="form-control" />
 </div>
-
 <div class="form-group">
     <label class="col-form-label" asp-for="Gender"></label>
     <input asp-for="Gender" class="form-control" />
@@ -46,7 +45,6 @@
     <input asp-for="Isactive" class="form-check-box" />
     <label class="col-form-label" asp-for="Isactive"></label>
 </div>
-
 <div class="form-group">
 
     <label class="col-form-label" asp-for="Department"></label>
@@ -54,4 +52,9 @@
        <option value="@null">  -- Select Department -- </option> 
     </select>
 
+</div>
+
+<div class="form-group">
+    <label asp-for="Image" class="col-form-label"></label>
+   <input type="file" asp-for="Image" class="form-control-file" />
 </div>

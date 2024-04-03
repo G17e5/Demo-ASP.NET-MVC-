@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Demo_ASP.NET_MVC.BLL.Interfaces;
 using Demo_ASP.NET_MVC.DAL.Models;
+using Demo_ASP.NET_MVC.Helpers;
 using Demo_ASP.NET_MVC.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -67,6 +68,9 @@ namespace Demo_ASP.NET_MVC.Controllers
             [HttpPost]
             public IActionResult Create(EmployeeViewModel employeeVM)
             {
+
+            employeeVM.ImageName =  DocumentSettings.UploadFile(employeeVM.Image, "Images");
+
             //manual mappmed
             /* var MappedEmp = new Employee()
           {
@@ -79,7 +83,9 @@ namespace Demo_ASP.NET_MVC.Controllers
               HireDate = employeeVM.HireDate
           };*/
 
-            var MappedEmp = _mapper.Map<EmployeeViewModel, Employee>(employeeVM);
+                var MappedEmp = _mapper.Map<EmployeeViewModel, Employee>(employeeVM);
+                
+
                 if (ModelState.IsValid)
                 {
                 _unitOfwork.EmployeeRepository.Add(MappedEmp);
@@ -88,7 +94,7 @@ namespace Demo_ASP.NET_MVC.Controllers
 
                 //3.TempData
                     if (count > 0)
-                        TempData["Message"] = "Department is Created";
+                        TempData["Message"] = "Employee is Created ";
 
                     else
                         TempData["Message"] = "AN Erorr not Created";    

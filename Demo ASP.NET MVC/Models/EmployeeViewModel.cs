@@ -1,6 +1,7 @@
 ﻿using Demo_ASP.NET_MVC.DAL.Models;
 using System.ComponentModel.DataAnnotations;
 using System;
+using Microsoft.AspNetCore.Http;
 
 namespace Demo_ASP.NET_MVC.Models
 {
@@ -34,5 +35,8 @@ namespace Demo_ASP.NET_MVC.Models
         public int? DepartmentId { get; set; }// forgin key column
         //Navgtion propperty ==> one
         public Department Department { get; set; }
+        public IFormFile Image { get; set; }
+
+        public string ImageName  { get; set; }
     }
 }
