@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Demo ASP.NET MVC.BLL\Demo ASP.NET MVC.BLL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Files\Images\" />
+  </ItemGroup>
+
 </Project>
